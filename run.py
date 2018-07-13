@@ -6,7 +6,7 @@ import redis, json
 # config system
 app = Flask(__name__)
 app.config.update(dict(SECRET_KEY='yoursecretkey'))
-r = redis.StrictRedis(host='localhost', port=6379, db=0)
+r = redis.StrictRedis(host='redis.redis-ha.svc', port=6379, db=0)
 
 # set auto-generated key
 if(r.exists('id')==False):
