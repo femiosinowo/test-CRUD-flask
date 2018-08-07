@@ -1,4 +1,4 @@
-FROM python:3.7
+FROM docker.io/python:3.7
 ADD . /code
 WORKDIR /code
 
