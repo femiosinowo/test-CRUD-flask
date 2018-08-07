@@ -1,23 +1,12 @@
-# "ported" by Adam Miller <maxamillion@fedoraproject.org> from
-#   https://github.com/fedora-cloud/Fedora-Dockerfiles
-#
-# Originally written for Fedora-Dockerfiles by
-#   "Aditya Patawari" <adimania@fedoraproject.org>
+FROM ubuntu:latest
+MAINTAINER Rajdeep Dua "dua_rajdeep@yahoo.com"
+RUN apt-get update -y
+RUN apt-get install -y python-pip python-dev build-essential
+ENV LOGNAME=ipython
+ENV USER=ipython
 
-FROM centos:centos7
-MAINTAINER The CentOS Project <cloud-ops@centos.org>
-
-USER root
-RUN yum -y update; yum clean all
-RUN yum -y install epel-release; yum clean all
-RUN yum -y install python-pip; yum clean all
-
-ADD . /src
-
-RUN cd /src; pip install -r requirements.txt
-
-USER 1001
-
-EXPOSE 8080
-
-CMD ["python", "/src/app.py"]
+COPY . /app
+WORKDIR /app
+RUN pip install -r requirements.txt
+ENTRYPOINT ["python"]
+CMD ["run.py"]
