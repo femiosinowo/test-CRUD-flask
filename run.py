@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_wtf import Form
 from wtforms import TextField, IntegerField, SubmitField
-import redis, json ,  os
+import redis, json , os
 
 # config system
 app = Flask(__name__)
