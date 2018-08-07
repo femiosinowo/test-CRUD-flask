@@ -1,12 +1,20 @@
-FROM centos/python-35-centos7
-MAINTAINER Femi Osinowo "femiosinowo@gmail.com"
+# "ported" by Adam Miller <maxamillion@fedoraproject.org> from
+#   https://github.com/fedora-cloud/Fedora-Dockerfiles
+#
+# Originally written for Fedora-Dockerfiles by
+#   "Aditya Patawari" <adimania@fedoraproject.org>
 
-ENV LOGNAME=ipython
-ENV USER=ipython
-WORKDIR /opt/app-root/
+FROM centos:centos7
+MAINTAINER The CentOS Project <cloud-ops@centos.org>
 
-COPY . /opt/app-root/
+RUN yum -y update; yum clean all
+RUN yum -y install epel-release; yum clean all
+RUN yum -y install python-pip; yum clean all
 
-#RUN pip install -r requirements.txt
-ENTRYPOINT ["python"]
-CMD ["app.py"]
+ADD . /src
+
+RUN cd /src; pip install -r requirements.txt
+
+EXPOSE 8080
+
+CMD ["python", "/src/app.py"]
