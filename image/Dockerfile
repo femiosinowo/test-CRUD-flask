@@ -3,9 +3,9 @@ MAINTAINER Femi Osinowo "femiosinowo@gmail.com"
 
 ENV LOGNAME=ipython
 ENV USER=ipython
-WORKDIR /opt/app-root/src/
+WORKDIR /opt/app-root/
 
-COPY . /opt/app-root/src/
+COPY . /opt/app-root/
 
 #RUN pip install -r requirements.txt
 ENTRYPOINT ["python"]
