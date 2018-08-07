@@ -53,7 +53,7 @@ def deleteTask(form):
     else:
         for i in r.keys():
             if i!='id' and r.hget(i,'title')==title:
-                print i
+                print 'i'
                 r.delete(i)
     return redirect('/')
 
